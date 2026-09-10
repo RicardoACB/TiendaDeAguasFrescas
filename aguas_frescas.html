@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aguas Frescas El Oasis</title>
+    <!-- Cargando Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Cargando Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <!-- Cargando Phosphor Icons para los íconos -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        /* Animaciones personalizadas */
+        .fade-in {
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .toast-enter {
+            animation: slideInRight 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+        .toast-leave {
+            animation: fadeOutRight 0.4s ease-in forwards;
+        }
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(100%); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes fadeOutRight {
+            from { opacity: 1; transform: translateX(0); }
+            to { opacity: 0; transform: translateX(100%); }
+        }
+    </style>
+</head>
+<body class="text-slate-800 flex flex-col min-h-screen relative">
+
+    <!-- Barra de Navegación -->
+    <nav class="bg-white shadow-sm sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center gap-2 cursor-pointer">
+                    <i class="ph ph-drop text-blue-500 text-3xl"></i>
+                    <span class="font-bold text-xl tracking-tight text-slate-900">El Oasis</span>
+                </div>
+                <!-- Botón del carrito -->
+                <button id="cartBtn" class="relative p-2 text-slate-600 hover:text-blue-600 transition-colors bg-slate-100 rounded-full hover:bg-blue-50">
+                    <i class="ph ph-shopping-cart text-2xl"></i>
+                    <!-- Insignia del contador -->
+                    <span id="cartCount" class="absolute top-0 right-0 -mt-1 -mr-1 flex items-center justify-center bg-red-500 text-white text-xs font-bold h-5 w-5 rounded-full shadow-sm">
+                        0
+                    </span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sección Hero -->
+    <header class="bg-gradient-to-r from-cyan-500 to-blue-500 text-white py-16 px-4 text-center">
+        <div class="max-w-3xl mx-auto fade-in">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4 drop-shadow-md">Refresca tu día con lo natural</h1>
+            <p class="text-lg md:text-xl text-blue-50 mb-8 opacity-90">Aguas frescas artesanales hechas con fruta 100% natural, hielo y mucho amor. ¡Elige tu sabor favorito!</p>
+            <a href="#productos" class="bg-white text-blue-600 font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-blue-50 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                Ver Sabores
+            </a>
+        </div>
+    </header>
+
+    <!-- Sección de Productos -->
+    <main id="productos" class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <h2 class="text-3xl font-bold text-center mb-12 text-slate-800">Nuestras Especialidades</h2>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            
+            <!-- Producto 1: Tamarindo -->
+            <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-shadow duration-300 overflow-hidden group">
+                <div class="h-48 bg-gradient-to-br from-amber-700 to-amber-900 flex items-center justify-center relative overflow-hidden">
+                    <span class="text-7xl transform group-hover:scale-110 transition-transform duration-300 relative z-10">🫘</span>
+                    <div class="absolute inset-0 bg-black opacity-10"></div>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-xl font-bold text-slate-900">Agua de Tamarindo</h3>
+                        <span class="text-lg font-bold text-green-600">$3.00</span>
+                    </div>
+                    <p class="text-slate-500 text-sm mb-4">El clásico sabor agridulce e intenso que nunca falla. Perfecta para el calor.</p>
+                    <button onclick="addToCart('tamarindo', 'Agua de Tamarindo', 3.00)" class="w-full bg-slate-900 text-white font-medium py-2.5 rounded-xl hover:bg-blue-600 transition-colors flex justify-center items-center gap-2">
+                        <i class="ph ph-plus-circle text-lg"></i> Agregar
+                    </button>
+                </div>
+            </div>
+
+            <!-- Producto 2: Piña -->
+            <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-shadow duration-300 overflow-hidden group">
+                <div class="h-48 bg-gradient-to-br from-yellow-300 to-yellow-500 flex items-center justify-center relative overflow-hidden">
+                    <span class="text-7xl transform group-hover:scale-110 transition-transform duration-300 relative z-10">🍍</span>
+                    <div class="absolute inset-0 bg-black opacity-0 hover:opacity-10 transition-opacity"></div>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-xl font-bold text-slate-900">Agua de Piña</h3>
+                        <span class="text-lg font-bold text-green-600">$3.50</span>
+                    </div>
+                    <p class="text-slate-500 text-sm mb-4">Tropical, dulce y refrescante. Hecha con piñas seleccionadas en su punto ideal.</p>
+                    <button onclick="addToCart('pina', 'Agua de Piña', 3.50)" class="w-full bg-slate-900 text-white font-medium py-2.5 rounded-xl hover:bg-blue-600 transition-colors flex justify-center items-center gap-2">
+                        <i class="ph ph-plus-circle text-lg"></i> Agregar
+                    </button>
+                </div>
+            </div>
+
+            <!-- Producto 3: Durazno -->
+            <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-shadow duration-300 overflow-hidden group">
+                <div class="h-48 bg-gradient-to-br from-orange-300 to-orange-500 flex items-center justify-center relative overflow-hidden">
+                    <span class="text-7xl transform group-hover:scale-110 transition-transform duration-300 relative z-10">🍑</span>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-xl font-bold text-slate-900">Agua de Durazno</h3>
+                        <span class="text-lg font-bold text-green-600">$4.00</span>
+                    </div>
+                    <p class="text-slate-500 text-sm mb-4">Suave, aromática y naturalmente dulce. Una delicia ligera para el paladar.</p>
+                    <button onclick="addToCart('durazno', 'Agua de Durazno', 4.00)" class="w-full bg-slate-900 text-white font-medium py-2.5 rounded-xl hover:bg-blue-600 transition-colors flex justify-center items-center gap-2">
+                        <i class="ph ph-plus-circle text-lg"></i> Agregar
+                    </button>
+                </div>
+            </div>
+
+            <!-- Producto 4: Manzana -->
+            <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-shadow duration-300 overflow-hidden group">
+                <div class="h-48 bg-gradient-to-br from-red-400 to-red-600 flex items-center justify-center relative overflow-hidden">
+                    <span class="text-7xl transform group-hover:scale-110 transition-transform duration-300 relative z-10">🍎</span>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-xl font-bold text-slate-900">Agua de Manzana</h3>
+                        <span class="text-lg font-bold text-green-600">$3.00</span>
+                    </div>
+                    <p class="text-slate-500 text-sm mb-4">El equilibrio perfecto de frescura. Manzanas rojas crujientes convertidas en bebida.</p>
+                    <button onclick="addToCart('manzana', 'Agua de Manzana', 3.00)" class="w-full bg-slate-900 text-white font-medium py-2.5 rounded-xl hover:bg-blue-600 transition-colors flex justify-center items-center gap-2">
+                        <i class="ph ph-plus-circle text-lg"></i> Agregar
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Pie de página -->
+    <footer class="bg-slate-900 text-slate-400 py-8 text-center">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col items-center">
+            <div class="flex items-center gap-2 mb-4">
+                <i class="ph ph-drop text-blue-500 text-2xl"></i>
+                <span class="font-bold text-lg text-white">El Oasis</span>
+            </div>
+            <p>© 2026 Aguas Frescas El Oasis. Todos los derechos reservados.</p>
+            <p class="text-sm mt-2">Hecho con ❤️ y mucha fruta.</p>
+        </div>
+    </footer>
+
+    <!-- Overlay del Carrito -->
+    <div id="cartOverlay" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden opacity-0 transition-opacity duration-300"></div>
+
+    <!-- Panel del Carrito -->
+    <div id="cartPanel" class="fixed top-0 right-0 h-full w-full sm:w-96 bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300 flex flex-col">
+        <!-- Header del Carrito -->
+        <div class="p-4 border-b flex justify-between items-center bg-slate-50">
+            <h2 class="text-xl font-bold text-slate-800 flex items-center gap-2">
+                <i class="ph ph-shopping-bag"></i> Tu Pedido
+            </h2>
+            <button id="closeCartBtn" class="p-2 text-slate-400 hover:text-red-500 rounded-full hover:bg-red-50 transition-colors">
+                <i class="ph ph-x text-xl"></i>
+            </button>
+        </div>
+        
+        <!-- Lista de Items -->
+        <div id="cartItemsContainer" class="flex-grow p-4 overflow-y-auto space-y-4">
+            <!-- Los items del carrito se insertan aquí vía JS -->
+            <div class="h-full flex flex-col items-center justify-center text-slate-400">
+                <i class="ph ph-shopping-cart text-6xl mb-4 opacity-50"></i>
+                <p>Tu carrito está vacío</p>
+                <p class="text-sm mt-1">¡Agrega algunas aguas frescas!</p>
+            </div>
+        </div>
+        
+        <!-- Footer del Carrito (Total y Pagar) -->
+        <div class="p-4 border-t bg-slate-50">
+            <div class="flex justify-between items-center mb-4">
+                <span class="text-slate-600 font-medium">Total a pagar:</span>
+                <span id="cartTotal" class="text-2xl font-bold text-slate-900">$0.00</span>
+            </div>
+            <button onclick="processCheckout()" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 rounded-xl shadow-md transition-colors flex justify-center items-center gap-2">
+                <i class="ph ph-credit-card"></i> Completar Pedido
+            </button>
+        </div>
+    </div>
+
+    <!-- Contenedor para Notificaciones Toast -->
+    <div id="toastContainer" class="fixed bottom-4 right-4 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+    <!-- Lógica de la aplicación -->
+    <script>
+        // Estado del carrito
+        let cart = [];
+
+        // Elementos del DOM
+        const cartBtn = document.getElementById('cartBtn');
+        const closeCartBtn = document.getElementById('closeCartBtn');
+        const cartOverlay = document.getElementById('cartOverlay');
+        const cartPanel = document.getElementById('cartPanel');
+        const cartCount = document.getElementById('cartCount');
+        const cartItemsContainer = document.getElementById('cartItemsContainer');
+        const cartTotal = document.getElementById('cartTotal');
+        const toastContainer = document.getElementById('toastContainer');
+
+        // Función para mostrar notificación emergente (Toast) en vez de usar alert()
+        function showToast(message, type = 'success') {
+            const toast = document.createElement('div');
+            // Colores dependiendo del tipo
+            const bgClass = type === 'success' ? 'bg-slate-900' : 'bg-blue-600';
+            const icon = type === 'success' ? 'ph-check-circle text-green-400' : 'ph-info text-white';
+
+            toast.className = `${bgClass} text-white px-4 py-3 rounded-xl shadow-lg flex items-center gap-3 toast-enter pointer-events-auto`;
+            toast.innerHTML = `
+                <i class="ph ${icon} text-xl"></i>
+                <span class="font-medium text-sm">${message}</span>
+            `;
+
+            toastContainer.appendChild(toast);
+
+            // Remover el toast después de 3 segundos
+            setTimeout(() => {
+                toast.classList.replace('toast-enter', 'toast-leave');
+                // Esperar a que termine la animación antes de eliminar el nodo
+                setTimeout(() => {
+                    toast.remove();
+                }, 400);
+            }, 3000);
+        }
+
+        // Agregar al carrito
+        function addToCart(id, name, price) {
+            // Verificar si el item ya existe en el carrito
+            const existingItem = cart.find(item => item.id === id);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ id, name, price, quantity: 1 });
+            }
+
+            updateCartUI();
+            showToast(`¡${name} agregada al carrito!`);
+            
+            // Pequeña animación en el botón del carrito
+            cartBtn.classList.add('scale-110');
+            setTimeout(() => cartBtn.classList.remove('scale-110'), 200);
+        }
+
+        // Eliminar del carrito
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            updateCartUI();
+        }
+
+        // Modificar cantidad
+        function updateQuantity(id, delta) {
+            const item = cart.find(item => item.id === id);
+            if (item) {
+                item.quantity += delta;
+                if (item.quantity <= 0) {
+                    removeFromCart(id);
+                } else {
+                    updateCartUI();
+                }
+            }
+        }
+
+        // Actualizar la interfaz del carrito
+        function updateCartUI() {
+            // Actualizar contador
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = totalItems;
+            
+            // Animación pop del contador
+            if(totalItems > 0) {
+                cartCount.classList.add('scale-125');
+                setTimeout(() => cartCount.classList.remove('scale-125'), 150);
+            }
+
+            // Actualizar total monetario
+            const totalCost = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            cartTotal.textContent = `$${totalCost.toFixed(2)}`;
+
+            // Actualizar lista visual de items
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = `
+                    <div class="h-full flex flex-col items-center justify-center text-slate-400 mt-10">
+                        <i class="ph ph-shopping-cart text-6xl mb-4 opacity-50"></i>
+                        <p>Tu carrito está vacío</p>
+                        <p class="text-sm mt-1">¡Agrega algunas aguas frescas!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            cartItemsContainer.innerHTML = ''; // Limpiar contenedor
+            cart.forEach(item => {
+                const itemEl = document.createElement('div');
+                itemEl.className = 'flex justify-between items-center p-3 bg-white border rounded-xl shadow-sm fade-in';
+                itemEl.innerHTML = `
+                    <div class="flex-grow">
+                        <h4 class="font-bold text-slate-800">${item.name}</h4>
+                        <div class="text-green-600 font-medium">$${item.price.toFixed(2)}</div>
+                    </div>
+                    <div class="flex items-center gap-3 bg-slate-50 px-2 py-1 rounded-lg border">
+                        <button onclick="updateQuantity('${item.id}', -1)" class="text-slate-500 hover:text-red-500 focus:outline-none">
+                            <i class="ph ph-minus text-sm"></i>
+                        </button>
+                        <span class="font-bold w-4 text-center">${item.quantity}</span>
+                        <button onclick="updateQuantity('${item.id}', 1)" class="text-slate-500 hover:text-green-500 focus:outline-none">
+                            <i class="ph ph-plus text-sm"></i>
+                        </button>
+                    </div>
+                `;
+                cartItemsContainer.appendChild(itemEl);
+            });
+        }
+
+        
+        // Función para abrir panel del carrito
+        function openCart() {
+            cartOverlay.classList.remove('hidden');
+            // Timeout pequeño para asegurar que la clase se quite antes de cambiar opacidad
+            setTimeout(() => {
+                cartOverlay.classList.remove('opacity-0');
+                cartPanel.classList.remove('translate-x-full');
+            }, 10);
+            document.body.style.overflow = 'hidden'; // Evitar scroll de fondo
+        }
+
+        // Función para cerrar panel del carrito
+        function closeCart() {
+            cartOverlay.classList.add('opacity-0');
+            cartPanel.classList.add('translate-x-full');
+            
+            // Esperar transición antes de ocultar completamente
+            setTimeout(() => {
+                cartOverlay.classList.add('hidden');
+                document.body.style.overflow = ''; // Restaurar scroll
+            }, 300);
+        }
+
+        // Función de Checkout (Pagar)
+        function processCheckout() {
+            if (cart.length === 0) {
+                showToast("Tu carrito está vacío", 'info');
+                return;
+            }
+            
+            // Simular un proceso de pago
+            showToast("¡Pedido confirmado! Preparando tus aguas...", "success");
+            
+            // Limpiar carrito después de comprar
+            cart = [];
+            updateCartUI();
+            
+            // Cerrar el carrito tras unos segundos
+            setTimeout(closeCart, 1500);
+        }
+
+        // Eventos
+        cartBtn.addEventListener('click', openCart);
+        closeCartBtn.addEventListener('click', closeCart);
+        cartOverlay.addEventListener('click', closeCart);
+
+        // Prevenir click en el panel para no cerrar si se da click fuera (overlay)
+        cartPanel.addEventListener('click', (e) => e.stopPropagation());
+
+    </script>
+</body>
+</html>

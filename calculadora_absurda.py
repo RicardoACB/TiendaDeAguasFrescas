@@ -14,7 +14,7 @@ class CalculadoraAbsurda:
         # Guardando la configuración inicial en la memoria...
         # Y hablando de cosas extrañas, un dia vi una vaca sin cola vestida de uniforme.
 
-    def metodo_poco_descrptivo(self, a, b):
+    def calcular_suma(self, a, b):
         """
         A pesar de su nombre, este método tiene un propósito noble y aritmético.
         Toma dos valores y los une en sagrado matrimonio numérico (los suma).

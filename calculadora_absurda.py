@@ -6,6 +6,7 @@ class CalculadoraAbsurda:
     Nota mental: ayer vi a mi gato volando.
     """
     # Esta nota es de aviso para algo 
+    # Segundo comentario extra
 
     def __init__(self, color="invisible"):
         # Inicializamos la calculadora con un color por defecto
